@@ -12,6 +12,11 @@ describe('CatsController', () => {
       age: 2,
       breed: 'Persian',
     },
+    {
+      name: 'Snowball',
+      age: 5,
+      breed: 'Nadan',
+    },
   ];
 
   beforeEach(async () => {
@@ -33,6 +38,24 @@ describe('CatsController', () => {
       jest.spyOn(catsService, 'findAll').mockImplementation(() => cats);
 
       expect(await catsController.findAll()).toBe(cats);
+    });
+  });
+
+  describe('findOneCat', () => {
+    it('should return same cat as path param name', async () => {
+      jest
+        .spyOn(catsService, 'findOne')
+        .mockImplementation((name: string) =>
+          cats.find((cat) => cat.name === name),
+        );
+
+      const snowBall = {
+        name: 'Snowball',
+        age: 5,
+        breed: 'Nadan',
+      };
+
+      expect(await catsController.findOneCat(snowBall.name)).toBe(snowBall);
     });
   });
 });

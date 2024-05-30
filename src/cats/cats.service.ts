@@ -12,4 +12,8 @@ export class CatsService {
   findAll() {
     return this.cats;
   }
+
+  findOne(name: string) {
+    return this.cats.find((cat) => cat.name === name);
+  }
 }

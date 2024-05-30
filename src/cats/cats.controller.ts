@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Header, Param, Post } from '@nestjs/common';
+import { Controller, Get, Header, Param, Post } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './Interfaces/cat.interface';
@@ -23,8 +23,6 @@ export class CatsController {
 
   @Get('get-that-cat/:name')
   findOneCat(@Param('name') name: string): Cat {
-    const cats = this.catsService.findAll();
-
-    return cats.find((cat) => cat.name === name);
+    return this.catsService.findOne(name);
   }
 }
