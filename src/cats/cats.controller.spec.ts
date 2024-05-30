@@ -55,7 +55,9 @@ describe('CatsController', () => {
         breed: 'Nadan',
       };
 
-      expect(await catsController.findOneCat(snowBall.name)).toBe(snowBall);
+      expect(await catsController.findOneCat(snowBall.name)).toBe(
+        snowBall.name,
+      );
     });
   });
 });
