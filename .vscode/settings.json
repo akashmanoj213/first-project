@@ -1,4 +1,4 @@
 {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": true
     // Add other VS Code settings if needed
 }
