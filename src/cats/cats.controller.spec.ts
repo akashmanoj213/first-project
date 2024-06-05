@@ -37,7 +37,7 @@ describe('CatsController', () => {
     it('should return array of cats', async () => {
       jest.spyOn(catsService, 'findAll').mockImplementation(() => cats);
 
-      expect(await catsController.findAll()).toBe(cats);
+      expect(await catsController.findAll()).toStrictEqual(cats);
     });
   });
 
