@@ -2,27 +2,36 @@ import { Controller, Get, Header, Param, Post } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './Interfaces/cat.interface';
+import { CatDto } from './dto/cat.dto';
 
 @Controller('cats')
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
   @Post()
-  create(createCat: CreateCatDto): string {
+  create(createCat: CreateCatDto) {
     const cat: Cat = { ...createCat };
     this.catsService.create(cat);
 
-    return 'This creates a new cat';
+    return 101;
   }
 
   @Get()
   @Header('cache-control', 'none')
-  async findAll() {
-    return this.catsService.findAll();
+  async findAll(): Promise<Cat[]> {
+    const cats = this.catsService.findAll();
+
+    const catsDto: CatDto[] = cats.map((cat) => ({ ...cat }));
+
+    return catsDto;
   }
 
   @Get('get-that-cat/:name')
-  findOneCat(@Param('name') name: string): Cat {
-    return this.catsService.findOne(name);
+  findOneCat(@Param('name') name: string) {
+    const cat = this.catsService.findOne(name);
+
+    const catDto: CatDto = { ...cat };
+
+    return catDto;
   }
 }
