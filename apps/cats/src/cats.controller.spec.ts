@@ -6,48 +6,51 @@ import { HttpService } from '@nestjs/axios';
 import { UserListResponseDto } from './dto/user-list-response.dto';
 import { of } from 'rxjs';
 import { AxiosRequestConfig } from 'axios';
+import { UserDto } from './dto/user.dto';
+
+const cats: Cat[] = [
+  {
+    name: 'Tinkles',
+    age: 2,
+    breed: 'Persian',
+  },
+  {
+    name: 'Snowball',
+    age: 5,
+    breed: 'Nadan',
+  },
+];
+
+const userList: UserDto[] = [
+  {
+    id: 1,
+    email: 'john.doe@example.com',
+    first_name: 'John',
+    last_name: 'Doe',
+    avatar: 'https://reqres.in/img/faces/1-image.jpg',
+  },
+];
+
+const mockUserListResponse: UserListResponseDto = {
+  data: userList,
+  page: 1,
+  per_page: 1,
+  total: 1,
+  total_pages: 1,
+};
+
+const mockAxiosResponse = {
+  data: mockUserListResponse,
+  status: 200,
+  statusText: 'OK',
+  headers: {},
+  config: {} as AxiosRequestConfig,
+};
 
 describe('CatsController', () => {
   let catsController: CatsController;
   let catsService: CatsService;
   let httpService: HttpService;
-
-  const cats: Cat[] = [
-    {
-      name: 'Tinkles',
-      age: 2,
-      breed: 'Persian',
-    },
-    {
-      name: 'Snowball',
-      age: 5,
-      breed: 'Nadan',
-    },
-  ];
-
-  const mockUserListResponse: UserListResponseDto = {
-    data: [
-      {
-        id: 1,
-        email: 'john.doe@example.com',
-        first_name: 'John',
-        last_name: 'Doe',
-        avatar: 'https://reqres.in/img/faces/1-image.jpg',
-      },
-    ],
-    page: 1,
-    per_page: 1,
-    total: 1,
-    total_pages: 1,
-  };
-
-  const mockAxiosResponse = {
-    data: mockUserListResponse,
-    status: 200,
-    statusText: 'OK',
-    headers: {},
-    config: {} as AxiosRequestConfig,
-  };
 
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
@@ -103,7 +106,7 @@ describe('CatsController', () => {
   describe('findCatOwners', () => {
     it('should return user list response', async () => {
       const result = await catsController.findCatOwners();
-      expect(result).toEqual(mockUserListResponse);
+      expect(result).toEqual(mockUserListResponse.data);
       expect(httpService.get).toHaveBeenCalledWith(
         'https://reqres.in/api/users',
       );

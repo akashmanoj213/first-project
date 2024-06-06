@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Cat } from './Interfaces/cat.interface';
 import { HttpService } from '@nestjs/axios';
-import { AxiosResponse } from 'axios';
 import { UserListResponseDto } from './dto/user-list-response.dto';
-import { Observable, lastValueFrom } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 
 @Injectable()
 export class CatsService {
@@ -20,10 +19,17 @@ export class CatsService {
   }
 
   findOne(name: string) {
-    return this.cats.find((cat) => cat.name === name);
+    const cat = this.cats.find((cat) => cat.name === name);
+    if (!cat) throw new Error(`cat with name: ${name} not found!`);
+    return cat;
   }
 
-  findCatOwners(): Promise<AxiosResponse<UserListResponseDto>> {
-    return lastValueFrom(this.httpService.get('https://reqres.in/api/users'));
+  async findCatOwners() {
+    const response = await lastValueFrom(
+      this.httpService.get('https://reqres.in/api/users'),
+    );
+
+    const userListRespone: UserListResponseDto = response.data;
+    return userListRespone.data;
   }
 }

@@ -1,0 +1,137 @@
+openapi: 3.0.0
+paths:
+  /cats:
+    post:
+      operationId: CatsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCatDto'
+            examples:
+              SUCCESS:
+                value:
+                  name: Tinkles
+                  age: 2
+                  breed: Persian
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatDto'
+              examples:
+                SUCCESS:
+                  value:
+                    name: Tinkles
+                    age: 2
+                    breed: Persian
+    get:
+      operationId: CatsController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CatDto'
+  /cats/{name}:
+    get:
+      operationId: CatsController_findOneCat
+      parameters:
+        - name: name
+          required: true
+          in: path
+          schema:
+            type: string
+          examples:
+            TINKLES_200_OK:
+              value: Tinkles
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatDto'
+              examples:
+                TINKLES_200_OK:
+                  value:
+                    name: Tinkles
+                    age: 2
+                    breed: Persian
+  /cats/owners:
+    get:
+      operationId: CatsController_findCatOwners
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDto'
+info:
+  title: Cats example
+  description: The cats API description
+  version: '1.0'
+  contact: {}
+tags:
+  - name: cats
+    description: ''
+servers: []
+components:
+  schemas:
+    CreateCatDto:
+      type: object
+      properties:
+        name:
+          type: string
+        age:
+          type: number
+        breed:
+          type: string
+      required:
+        - name
+        - age
+        - breed
+    CatDto:
+      type: object
+      properties:
+        name:
+          type: string
+        age:
+          type: number
+        breed:
+          type: string
+      required:
+        - name
+        - age
+        - breed
+    UserDto:
+      type: object
+      properties:
+        id:
+          type: number
+        email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        avatar:
+          type: string
+      required:
+        - id
+        - email
+        - first_name
+        - last_name
+        - avatar

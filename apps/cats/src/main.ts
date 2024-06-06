@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { CatsModule } from './cats.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as fs from 'fs';
+import { stringify } from 'yaml';
 
 async function bootstrap() {
   const app = await NestFactory.create(CatsModule);
@@ -16,7 +17,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
 
   if (process.env.NODE_ENV === 'development')
-    fs.writeFileSync('./apps/cats/api-spec.json', JSON.stringify(document));
+    fs.writeFileSync('./apps/cats/auto-api-spec.yaml', stringify(document));
 
   SwaggerModule.setup('api', app, document);
 
