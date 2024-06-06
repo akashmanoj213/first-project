@@ -3,6 +3,7 @@ import { CreateCatDto } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './Interfaces/cat.interface';
 import { CatDto } from './dto/cat.dto';
+import { UserListResponseDto } from './dto/user-list-response.dto';
 
 @Controller('cats')
 export class CatsController {
@@ -33,5 +34,10 @@ export class CatsController {
     const catDto: CatDto = { ...cat };
 
     return catDto;
+  }
+
+  @Get('owners')
+  async findCatOwners(): Promise<UserListResponseDto> {
+    return (await this.catsService.findCatOwners()).data;
   }
 }
