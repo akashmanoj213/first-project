@@ -1,4 +1,4 @@
-import { Controller, Get, Header, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Header, Param, Post } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './Interfaces/cat.interface';
@@ -10,7 +10,8 @@ export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
   @Post()
-  create(createCat: CreateCatDto) {
+  // @ApiBody({ type: CreateCatDto })
+  create(@Body() createCat: CreateCatDto) {
     const cat: Cat = { ...createCat };
     this.catsService.create(cat);
 
@@ -28,6 +29,7 @@ export class CatsController {
   }
 
   @Get('get-that-cat/:name')
+  // @ApiParam({ name: 'name' })
   findOneCat(@Param('name') name: string) {
     const cat = this.catsService.findOne(name);
 
