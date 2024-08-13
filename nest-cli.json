@@ -30,6 +30,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/cats/tsconfig.app.json"
       }
+    },
+    "common-services/pub-sub-client": {
+      "type": "library",
+      "root": "libs/common-services/pub-sub-client",
+      "entryFile": "index",
+      "sourceRoot": "libs/common-services/pub-sub-client/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common-services/pub-sub-client/tsconfig.lib.json"
+      }
     }
   }
 }

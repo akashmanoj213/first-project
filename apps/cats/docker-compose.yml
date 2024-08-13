@@ -1,0 +1,37 @@
+services:
+  cats:
+    build:
+      context: ../../
+      dockerfile: ./apps/cats/Dockerfile
+    image: 'docker-phil-sahi-local/cats'
+    container_name: cats-prod
+    ports:
+      - "3000:3000"
+
+  pubsub-emulator:
+    image: cloud-sdk-emulator
+    ports:
+      - "8085:8085"
+    command: gcloud beta emulators pubsub start --project=sample-project
+
+  cats-dev:
+    build:
+      context: ../../
+      dockerfile: ./apps/cats/Dockerfile
+      target: development
+    image: 'monorepo/cats-dev'
+    container_name: cats-dev
+    ports:
+      - "3000:3000"
+    develop:
+      watch:
+        - path: ./src
+          action: sync
+          target: /usr/local/app/apps/cats/src
+        - path: ../../package.json
+          action: rebuild
+    environment:
+      - PUBSUB_EMULATOR_HOST=host.docker.internal:8085
+      - PUBSUB_PROJECT_ID=sample-project
+    depends_on:
+      - pubsub-emulator

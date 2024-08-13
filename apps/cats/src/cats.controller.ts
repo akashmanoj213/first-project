@@ -16,6 +16,14 @@ import { UserDto } from './dto/user.dto';
 @Controller('cats')
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
+  @Post('create-cat-handler')
+  createCatHandler(@Body() createCat: CreateCatDto) {
+    const cat: Cat = { ...createCat };
+    this.catsService.create(cat);
+
+    const catResponse: CatDto = { ...cat };
+    return catResponse;
+  }
 
   @Post()
   create(@Body() createCat: CreateCatDto) {

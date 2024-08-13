@@ -17,6 +17,13 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "paths": {}
+    "paths": {
+      "@app/common-services/pub-sub-client": [
+        "libs/common-services/pub-sub-client/src"
+      ],
+      "@app/common-services/pub-sub-client/*": [
+        "libs/common-services/pub-sub-client/src/*"
+      ]
+    }
   }
 }
