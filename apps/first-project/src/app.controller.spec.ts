@@ -4,17 +4,20 @@ import { AppService } from './app.service';
 import { PubSubClientService } from '@app/common-services/pub-sub-client';
 
 describe('AppController', () => {
-  // let appController: AppController;
-  // beforeEach(async () => {
-  //   const app: TestingModule = await Test.createTestingModule({
-  //     controllers: [AppController],
-  //     providers: [AppService, PubSubClientService],
-  //   }).compile();
-  //   appController = app.get<AppController>(AppController);
-  // });
-  // describe('root', () => {
-  //   it('should return "Hello World!"', () => {
-  //     expect(appController.getHello()).toBe('Hello World!');
-  //   });
-  // });
+  let appController: AppController;
+
+  beforeEach(async () => {
+    const app: TestingModule = await Test.createTestingModule({
+      controllers: [AppController],
+      providers: [AppService, PubSubClientService],
+    }).compile();
+
+    appController = app.get<AppController>(AppController);
+  });
+
+  describe('root', () => {
+    it('should return "Hello World!"', () => {
+      expect(appController.getHello()).toBe('Hello World!');
+    });
+  });
 });
