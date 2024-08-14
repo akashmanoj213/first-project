@@ -9,7 +9,7 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    console.log('Hello');
+    console.log('Hello from first-project!');
     return this.appService.getHello();
   }
 
