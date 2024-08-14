@@ -1,0 +1,13 @@
+name: learn github actions
+run-name: ${{ github.actor }} is learning github actions
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print a greeting
+        env:
+          MY_VAR: Hi there! My name is
+          FIRST_NAME: Akash
+          LAST_NAME: Manoj
+        run: echo $MY_VAR $FIRST_NAME $LAST_NAME.
