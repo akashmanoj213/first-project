@@ -2,8 +2,6 @@ name: learn github actions
 run-name: ${{ github.actor }} is learning github actions
 on:
   push:
-    paths:
-      - apps/first-project/**
 jobs:
   print-name:
     runs-on: ubuntu-latest

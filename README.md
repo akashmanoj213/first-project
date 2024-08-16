@@ -92,6 +92,6 @@ Nest is [MIT licensed](LICENSE).
   The pubsub-emulator enables all pub-sub related commands using node js client. It is hosted on localhost:8085.
   The postgres container enables all db operations and is hosted on localhost:5033. Port 5033 has been chose to avoid any conflict with local postgres version that maybe running on 5032. All data is persisted using volume postgres-data.
 
-The main.ts file includes a script that set-up topics and subscriptions for pub-sub and is run if the project is run on developmeent environment. Any new topics and subscriptions that the project might require can be added to the "topicsRequired" and "topicSubscriptions" list.
+- The main.ts file includes a script that set-up topics and subscriptions for pub-sub and is run if the project is run on developmeent environment. Any new topics and subscriptions that the project might require can be added to the "topicsRequired" and "topicSubscriptions" list.
 
 - Any new project that needs to be added to the monorepo needs to be added using "nest g app <project-name>"
