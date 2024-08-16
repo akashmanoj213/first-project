@@ -4,9 +4,11 @@ import { AppService } from './app.service';
 import { PubSubClientModule } from '@app/common-services/pub-sub-client';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Owner } from './entities/owner.entity';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     PubSubClientModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
