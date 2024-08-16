@@ -12,7 +12,7 @@ jobs:
           LAST_NAME: Manoj
         run: echo $MY_VAR $FIRST_NAME $LAST_NAME.
 
-  check-bat-version
+  check-bat-version:
     runs-on: ubuntu-latest
     steps:
       - name: Use actions
@@ -21,6 +21,6 @@ jobs:
         with:
           node-version: '20'
       - run: npm install -g bats
-      - run bats -v
+      - run: bats -v
 
 
