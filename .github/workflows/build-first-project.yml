@@ -3,7 +3,7 @@ run-name: Build running for path - ${{ github.event_path }}
 on:
   push:
     paths:
-      - ./apps/first-project/**
+      - ../../apps/first-project/**
 
 jobs:
   build-docker:

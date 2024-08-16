@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is learning github actions
 on:
   push:
     paths:
-      - ./apps/**
+      - apps/first-project/**
 jobs:
   print-name:
     runs-on: ubuntu-latest
