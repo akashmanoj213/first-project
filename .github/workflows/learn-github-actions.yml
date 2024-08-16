@@ -2,7 +2,7 @@ name: learn github actions
 run-name: ${{ github.actor }} is learning github actions
 on: [push]
 jobs:
-  check-bats-version:
+  print-name:
     runs-on: ubuntu-latest
     steps:
       - name: Print a greeting
@@ -11,3 +11,16 @@ jobs:
           FIRST_NAME: Akash
           LAST_NAME: Manoj
         run: echo $MY_VAR $FIRST_NAME $LAST_NAME.
+
+  check-bat-version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use actions
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install -g bats
+      - run bats -v
+
+
