@@ -1,6 +1,9 @@
 name: learn github actions
 run-name: ${{ github.actor }} is learning github actions
-on: [push]
+on:
+  push:
+    paths:
+      - ./apps/**
 jobs:
   print-name:
     runs-on: ubuntu-latest
@@ -25,5 +28,3 @@ jobs:
         run: npm install -g bats
       - name: Run bats
         run: bats -v
-
-
