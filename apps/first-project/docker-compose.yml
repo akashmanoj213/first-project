@@ -11,7 +11,7 @@ services:
       - NODE_ENV=production
 
   pubsub-emulator:
-    image: cloud-sdk-emulator
+    image: docker-phil-sahi.pruregistry.intranet.asia:8443/cloud-sdk-emulator:latest
     container_name: pub-sub-emulator
     ports:
       - "8085:8085"

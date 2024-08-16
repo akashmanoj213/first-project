@@ -1,0 +1,15 @@
+name: Build nestjs project
+run-name: Build running for path - ${{ github.event_path }}
+on:
+  push:
+    paths:
+      - ./apps/first-project/**
+
+jobs:
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print working directory
+        run: |
+          echo 'print working directory'
+          pwd
