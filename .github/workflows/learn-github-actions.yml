@@ -16,13 +16,5 @@ jobs:
   check-bat-version:
     runs-on: ubuntu-latest
     steps:
-      - name: Use actions
-        uses: actions/checkout@v4
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Install bats
-        run: npm install -g bats
-      - name: Run bats
-        run: bats -v
+      - name: Print files
+        run: ls
