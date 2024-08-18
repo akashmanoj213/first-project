@@ -5,13 +5,17 @@ on:
 jobs:
   print-name:
     runs-on: ubuntu-latest
+    env:
+      NAME: Akash
     steps:
-      - name: Print a greeting
-        env:
-          MY_VAR: Hi there! My name is
-          FIRST_NAME: Akash
-          LAST_NAME: Manoj
-        run: echo $MY_VAR $FIRST_NAME $LAST_NAME.
+      - name: Print and setting name
+
+        run: |
+          echo $NAME
+          NAME='Kirti'
+
+      - name: Print reset variable
+        run: echo $NAME
 
   check-bat-version:
     runs-on: ubuntu-latest
