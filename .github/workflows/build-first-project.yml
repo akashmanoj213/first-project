@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
       - name: docker compose up
         run: docker compose -f apps/first-project build first-project
       - name: docker images ls

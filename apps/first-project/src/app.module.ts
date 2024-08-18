@@ -8,7 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ envFilePath: './.env' }),
+    ConfigModule.forRoot(),
     PubSubClientModule,
     TypeOrmModule.forRoot({
       type: 'postgres',

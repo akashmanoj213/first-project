@@ -17,8 +17,16 @@ jobs:
       - name: Print reset variable
         run: echo $NAME
 
-  check-bat-version:
+  print-current-files:
     runs-on: ubuntu-latest
     steps:
       - name: Print files
+        run: ls
+
+  checkout-and-print:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: print files
         run: ls
