@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     steps:
-      - name: Docker login
-        run: docker login docker-phil-sahi-local.pruregistry.intranet.asia:8443 -u ${{ secrets.ARTIFACTORY_SERVICE_ACCOUNT }} -p ${{ secrets.ARTIFACTORY_SERVICE_ACCOUNT_PASSWORD }}
       - name: docker compose up
         run: docker compose build -f apps/first-project up first-project
       - name: docker images ls
