@@ -49,6 +49,11 @@ export class CatsController {
     return await this.catsService.findCatOwners();
   }
 
+  @Get('test')
+  async test() {
+    return await this.catsService.test();
+  }
+
   @Get(':name')
   findOneCat(@Param('name') catName: string): CatDto {
     try {

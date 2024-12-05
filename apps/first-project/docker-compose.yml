@@ -3,7 +3,7 @@ services:
     build:
       context: ../../
       dockerfile: ./apps/first-project/Dockerfile
-    image: 'docker-phil-sahi-local/first-project'
+    image: 'docker-phil-sahi.pruregistry.intranet.asia:8443/first-project'
     container_name: first-project
     ports:
       - "8080:8080"

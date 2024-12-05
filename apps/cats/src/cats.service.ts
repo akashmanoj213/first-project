@@ -32,4 +32,8 @@ export class CatsService {
     const userListRespone: UserListResponseDto = response.data;
     return userListRespone.data;
   }
+
+  async test() {
+    return 'Cats service is working!';
+  }
 }
